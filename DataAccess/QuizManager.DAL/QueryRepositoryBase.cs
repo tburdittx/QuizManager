@@ -11,7 +11,7 @@ namespace QuizManager.DAL
     {
         private readonly IConfiguration configuration;
 
-        private const string DbName = "PracticeQuestions";
+        private const string DbName = "QuizManager";
 
         public QueryRepositoryBase(IConfiguration configuration)
         {

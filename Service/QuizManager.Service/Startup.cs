@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using QuizManager.DAL;
+using QuizManager.DAL.Interface;
 
 namespace QuizManager.Service
 {
@@ -24,6 +20,9 @@ namespace QuizManager.Service
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddTransient<IQuestionsQueryRepository, QuestionsQueryRepository>();
+            services.AddTransient<ICategoryQueryRepository, CategoryQueryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,7 +32,6 @@ namespace QuizManager.Service
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseMvc();
         }
     }

@@ -17,7 +17,7 @@ SELECT [Id]
       ,[OptionD]
       ,[Answer]
       ,[Explanation]
-  FROM [DummyQuizManager].[dbo].[Questions]
+  FROM [QuizManager].[dbo].[Questions]
   where Id=@id
 
 END
