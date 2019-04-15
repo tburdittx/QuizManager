@@ -3,9 +3,71 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{BA311AB6-E403-4BF7-B57D-29D0DD3D23BC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{FE7374FC-9D44-42A1-A15C-0EBFF223B7E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{E5E4C53E-1F8D-432B-87D3-E5696A83B372}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApp", "WebApp", "{AD4ACD23-A8A7-40B7-A3F6-846826E6325A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{ABE4A4CD-E2ED-4C2B-AF80-1D5F20F25C14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.Entities", "Entities\QuizManager.Entities\QuizManager.Entities.csproj", "{3D422615-D1C2-4837-9916-7EEE5239E0AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.DAL", "DataAccess\QuizManager.DAL\QuizManager.DAL.csproj", "{84E5363A-4F9C-42CF-9730-F6043F059C07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.DAL.Interface", "DataAccess\QuizManager.DAL.Interface\QuizManager.DAL.Interface.csproj", "{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.Service", "Service\QuizManager.Service\QuizManager.Service.csproj", "{3E3A80B4-C268-4BFB-80D1-CDC79406113F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.WebApp", "WebApp\QuizManager.WebApp\QuizManager.WebApp.csproj", "{C9E8C9FB-FC41-41C1-9935-826E068E403B}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "QuizManager.Database", "Database\QuizManager.Database\QuizManager.Database.sqlproj", "{A5495072-8C40-4DD4-838A-5FE6AE324C12}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D422615-D1C2-4837-9916-7EEE5239E0AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D422615-D1C2-4837-9916-7EEE5239E0AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D422615-D1C2-4837-9916-7EEE5239E0AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D422615-D1C2-4837-9916-7EEE5239E0AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E5363A-4F9C-42CF-9730-F6043F059C07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E5363A-4F9C-42CF-9730-F6043F059C07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E5363A-4F9C-42CF-9730-F6043F059C07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E5363A-4F9C-42CF-9730-F6043F059C07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E3A80B4-C268-4BFB-80D1-CDC79406113F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E3A80B4-C268-4BFB-80D1-CDC79406113F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E3A80B4-C268-4BFB-80D1-CDC79406113F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E3A80B4-C268-4BFB-80D1-CDC79406113F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9E8C9FB-FC41-41C1-9935-826E068E403B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9E8C9FB-FC41-41C1-9935-826E068E403B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9E8C9FB-FC41-41C1-9935-826E068E403B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9E8C9FB-FC41-41C1-9935-826E068E403B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3D422615-D1C2-4837-9916-7EEE5239E0AC} = {BA311AB6-E403-4BF7-B57D-29D0DD3D23BC}
+		{84E5363A-4F9C-42CF-9730-F6043F059C07} = {FE7374FC-9D44-42A1-A15C-0EBFF223B7E5}
+		{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A} = {FE7374FC-9D44-42A1-A15C-0EBFF223B7E5}
+		{3E3A80B4-C268-4BFB-80D1-CDC79406113F} = {E5E4C53E-1F8D-432B-87D3-E5696A83B372}
+		{C9E8C9FB-FC41-41C1-9935-826E068E403B} = {AD4ACD23-A8A7-40B7-A3F6-846826E6325A}
+		{A5495072-8C40-4DD4-838A-5FE6AE324C12} = {ABE4A4CD-E2ED-4C2B-AF80-1D5F20F25C14}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DB13F32-AB8B-44C7-B219-C533E3571A79}
