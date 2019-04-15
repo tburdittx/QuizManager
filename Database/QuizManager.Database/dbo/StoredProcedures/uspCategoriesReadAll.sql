@@ -10,6 +10,7 @@ BEGIN
 	SET NOCOUNT ON;
 	SELECT [Id]
       ,[Name]
+	  ,[Description]
   FROM [dbo].[Categories]
   end
 GO

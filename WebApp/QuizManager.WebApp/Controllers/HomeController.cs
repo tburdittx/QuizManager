@@ -14,7 +14,32 @@ namespace QuizManager.WebApp.Controllers
     {
         public IActionResult Index()
         {
+            this.Categories();
             return View();
+        }
+
+        public IActionResult Categories()
+        {
+            IEnumerable<CategoryViewModel> categoryOptions;
+
+            string getCategories = "category/readallcategories";
+            var result = this.httpClient(getCategories);
+
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<IList<CategoryViewModel>>();
+                readTask.Wait();
+
+                categoryOptions = readTask.Result;
+            }
+            else
+            {
+                //Error response received   
+                categoryOptions = Enumerable.Empty<CategoryViewModel>();
+                ModelState.AddModelError(string.Empty, "Server error try after some time.");
+            }
+
+            return this.View(categoryOptions);
         }
 
         public IActionResult GetAllQuestionsByCategoryId()

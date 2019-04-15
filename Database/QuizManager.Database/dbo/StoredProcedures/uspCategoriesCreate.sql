@@ -5,15 +5,18 @@
 -- =============================================
 CREATE PROCEDURE uspCategoriesCreate
 
-@name	nvarchar(526)
+@name	nvarchar(526),
+@description nvarchar(526)
 
 AS
 BEGIN
 INSERT INTO [dbo].[Categories]
-           ([Name])
+           ([Name],
+		   [Description])
      VALUES
            (
-		   @name
+		   @name,
+		   @description
 		   )
 
 END
