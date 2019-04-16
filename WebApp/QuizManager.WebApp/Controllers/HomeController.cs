@@ -43,12 +43,12 @@ namespace QuizManager.WebApp.Controllers
             return this.View(categoryOptions);
         }
 
-        public IActionResult GetAllQuestionsByCategoryId(CategoryViewModel incomingModel)
+        public IActionResult GetAllQuestionsByCategoryId(int id)
         {
             // var result = GetAllQuestions();
             IEnumerable<QuestionsViewModel> questions;
            // int id = 1;
-            string readAllQuestionsUrl = $"questions/ReadQuestionByCategoryId/{incomingModel.Id}";
+            string readAllQuestionsUrl = $"questions/ReadQuestionByCategoryId/{id}";
             var result = this.httpClient(readAllQuestionsUrl);
 
             //If success received   
@@ -65,7 +65,7 @@ namespace QuizManager.WebApp.Controllers
                 questions = Enumerable.Empty<QuestionsViewModel>();
                 ModelState.AddModelError(string.Empty, "Server error try after some time.");
             }
-
+            
             //IEnumerable<QuestionsViewModel> model;
 
             //model.ListOfQuestions = new List<Questions>();
@@ -81,30 +81,51 @@ namespace QuizManager.WebApp.Controllers
         public IActionResult GetScore(QuestionsViewModel models)
         {
             Questions questions = new Questions();
-         //   string getQuestionsById = $"questions/readquestionbyid/{models.}";
+            string getQuestionsById = $"questions/readquestionbyid/{models.Id}";
 
-            //var result = this.httpClient(getQuestionsById);
+            var result = this.httpClient(getQuestionsById);
 
-            ////If success received   
-            //if (result.IsSuccessStatusCode)
-            //{
-            //    var readTask = result.Content.ReadAsAsync<Questions>();
-            //    readTask.Wait();
+            //If success received   
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<Questions>();
+                readTask.Wait();
 
-            //    questions = readTask.Result;
-            //}
-            //else
-            //{
-            //    //Error response received   
-            //   // questions = Enumerable.Empty<Questions>();
-            //    ModelState.AddModelError(string.Empty, "Server error try after some time.");
-            //}
-           
+                questions = readTask.Result;
+            }
+            else
+            {
+                //Error response received   
+                ModelState.AddModelError(string.Empty, "Server error try after some time.");
+            }
+
             //questions is coming back with the whole question from the database. 
 
 
 
-            return this.View();
+            QuestionsViewModel questionResult = new QuestionsViewModel
+            {
+                Id=models.Id,
+                CategoryId=questions.CategoryId,
+                Question = questions.Question,
+                OptionA = questions.OptionA,
+                OptionB = questions.OptionB,
+                OptionC = questions.OptionC,
+                OptionD = questions.OptionD,
+                Answer = questions.Answer,
+                Explanation = questions.Explanation,
+                AnswerInput=models.AnswerInput
+
+            };
+  if (models.AnswerInput==questions.Answer)
+            {
+                questionResult.Correct = "You got the right answer!";
+            }
+            else
+            {
+questionResult.Correct = "You got the wrong answer!";
+            }
+            return this.View("GetScore", questionResult);
 
         }
 

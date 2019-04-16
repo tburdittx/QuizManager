@@ -15,6 +15,10 @@ namespace QuizManager.Entities
 
         [DataMember]
         [XmlElement]
+        public int CategoryId { get; set; }
+
+        [DataMember]
+        [XmlElement]
         public string OptionA { get; set; }
 
         [DataMember]

@@ -13,7 +13,7 @@ namespace QuizManager.WebApp.Models
         public int Id { get; set; }
         public string Question { get; set; }
 
-        public Category CategoryEntity { get; set; }
+        public int CategoryId { get; set; }
 
         [DisplayName("Option A")]
         public string OptionA { get; set; }
@@ -34,8 +34,8 @@ namespace QuizManager.WebApp.Models
         public string AnswerInput { get; set; }
         public string Explanation { get; set; }
 
-        public int Total { get; set; }
+        public string Correct { get; set; }
 
-        public IEnumerable<Questions> ListOfQuestions { get; set; }
+        public IEnumerable<QuestionsViewModel> ListOfQuestions { get; set; }
     }
 }

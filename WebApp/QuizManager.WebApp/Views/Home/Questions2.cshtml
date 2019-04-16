@@ -21,38 +21,36 @@
             </div>
             <div class="form-group">
                 <label asp-for="@item.Question" class="control-label"></label>
-                <input asp-for="@item.Question" class="form-control" readonly/>
+                <input asp-for="@item.Question" class="form-control" readonly />
                 <span asp-validation-for="@item.Question" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@item.OptionA" class="control-label"></label>
-                <input asp-for="@item.OptionA" class="form-control" readonly/>
+                <input asp-for="@item.OptionA" class="form-control" readonly />
                 <span asp-validation-for="@item.OptionA" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@item.OptionB" class="control-label"></label>
-                <input asp-for="@item.OptionB" class="form-control" readonly/>
+                <input asp-for="@item.OptionB" class="form-control" readonly />
                 <span asp-validation-for="@item.OptionB" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@item.OptionC" class="control-label"></label>
-                <input asp-for="@item.OptionC" class="form-control" readonly/>
+                <input asp-for="@item.OptionC" class="form-control" readonly />
                 <span asp-validation-for="@item.OptionC" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="@item.OptionD" class="control-label"></label>
-                <input asp-for="@item.OptionD" class="form-control" readonly/>
+                <input asp-for="@item.OptionD" class="form-control" readonly />
                 <span asp-validation-for="@item.OptionD" class="text-danger"></span>
             </div>
-          
+
             <div class="form-group">
                 <label asp-for="@item.AnswerInput" class="control-label" name="AnswerInput"></label>
                 <input asp-for="@item.AnswerInput" name="AnswerInput" class="form-control" />
                 <span asp-validation-for="@item.AnswerInput" class="text-danger"></span>
-
-
             </div>
-          
+
             <div class="form-group">
                 <input type="submit" value="Get Answer" asp-action="GetScore" asp-route-id="@item.Id" class="btn btn-default" />
             </div>

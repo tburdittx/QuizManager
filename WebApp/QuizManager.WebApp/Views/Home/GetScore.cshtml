@@ -1,79 +1,78 @@
-﻿@model IEnumerable<QuizManager.WebApp.Models.QuestionsViewModel>
+﻿@model QuizManager.WebApp.Models.QuestionsViewModel
 
 @{
     ViewData["Title"] = "GetScore";
 }
 
-<h1>The Results!</h1>
+<h2>GetScore</h2>
 
-<table class="table">
-    <thead>
-        <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Question)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OptionA)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OptionB)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OptionC)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.OptionD)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Answer)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AnswerInput)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Explanation)
-                </th>
-
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Question)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionA)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionB)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionC)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OptionD)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Answer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnswerInput)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Explanation)
-            </td>
-
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div>
+    <h4>QuestionsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OptionA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptionA)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OptionB)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptionB)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OptionC)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptionC)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.OptionD)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OptionD)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Answer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Answer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AnswerInput)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AnswerInput)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Explanation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Explanation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Correct)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Correct)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="GetAllQuestionsByCategoryId" asp-route-id="CategoryId">Back to List</a>
+    <a asp-action="GetAllQuestionsByCategoryId" asp-route-id="@Model.CategoryId">Edit</a> |
+</div>
