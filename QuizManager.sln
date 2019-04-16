@@ -19,9 +19,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.DAL", "DataAcce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.DAL.Interface", "DataAccess\QuizManager.DAL.Interface\QuizManager.DAL.Interface.csproj", "{34A38DD4-2EA5-4F0F-A067-3C7027BDF09A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.Service", "Service\QuizManager.Service\QuizManager.Service.csproj", "{3E3A80B4-C268-4BFB-80D1-CDC79406113F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizManager.Service", "Service\QuizManager.Service\QuizManager.Service.csproj", "{3E3A80B4-C268-4BFB-80D1-CDC79406113F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.WebApp", "WebApp\QuizManager.WebApp\QuizManager.WebApp.csproj", "{C9E8C9FB-FC41-41C1-9935-826E068E403B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizManager.WebApp", "WebApp\QuizManager.WebApp\QuizManager.WebApp.csproj", "{C9E8C9FB-FC41-41C1-9935-826E068E403B}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "QuizManager.Database", "Database\QuizManager.Database\QuizManager.Database.sqlproj", "{A5495072-8C40-4DD4-838A-5FE6AE324C12}"
 EndProject
