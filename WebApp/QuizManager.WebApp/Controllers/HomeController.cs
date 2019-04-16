@@ -46,7 +46,7 @@ namespace QuizManager.WebApp.Controllers
         public IActionResult GetAllQuestionsByCategoryId(CategoryViewModel incomingModel)
         {
             // var result = GetAllQuestions();
-            IEnumerable<Questions> questions;
+            IEnumerable<QuestionsViewModel> questions;
            // int id = 1;
             string readAllQuestionsUrl = $"questions/ReadQuestionByCategoryId/{incomingModel.Id}";
             var result = this.httpClient(readAllQuestionsUrl);
@@ -54,7 +54,7 @@ namespace QuizManager.WebApp.Controllers
             //If success received   
             if (result.IsSuccessStatusCode)
             {
-                var readTask = result.Content.ReadAsAsync<IList<Questions>>();
+                var readTask = result.Content.ReadAsAsync<IList<QuestionsViewModel>>();
                 readTask.Wait();
 
                 questions = readTask.Result;
@@ -62,41 +62,43 @@ namespace QuizManager.WebApp.Controllers
             else
             {
                 //Error response received   
-                questions = Enumerable.Empty<Questions>();
+                questions = Enumerable.Empty<QuestionsViewModel>();
                 ModelState.AddModelError(string.Empty, "Server error try after some time.");
             }
 
-            QuestionsViewModel model = new QuestionsViewModel();
+            //IEnumerable<QuestionsViewModel> model;
 
-            model.ListOfQuestions = new List<Questions>();
+            //model.ListOfQuestions = new List<Questions>();
 
-            model.ListOfQuestions = questions;
+            //model.ListOfQuestions = questions;
+            
 
 
-            return this.View("Questions2", model);
+            return this.View("Questions2", questions);
         }
 
-        public IActionResult GetScore(QuestionsViewModel model)
+        [HttpPost]
+        public IActionResult GetScore(QuestionsViewModel models)
         {
             Questions questions = new Questions();
-            string getQuestionsById = $"questions/readquestionbyid/{model.Id}";
+         //   string getQuestionsById = $"questions/readquestionbyid/{models.}";
 
-            var result = this.httpClient(getQuestionsById);
+            //var result = this.httpClient(getQuestionsById);
 
-            //If success received   
-            if (result.IsSuccessStatusCode)
-            {
-                var readTask = result.Content.ReadAsAsync<Questions>();
-                readTask.Wait();
+            ////If success received   
+            //if (result.IsSuccessStatusCode)
+            //{
+            //    var readTask = result.Content.ReadAsAsync<Questions>();
+            //    readTask.Wait();
 
-                questions = readTask.Result;
-            }
-            else
-            {
-                //Error response received   
-               // questions = Enumerable.Empty<Questions>();
-                ModelState.AddModelError(string.Empty, "Server error try after some time.");
-            }
+            //    questions = readTask.Result;
+            //}
+            //else
+            //{
+            //    //Error response received   
+            //   // questions = Enumerable.Empty<Questions>();
+            //    ModelState.AddModelError(string.Empty, "Server error try after some time.");
+            //}
            
             //questions is coming back with the whole question from the database. 
 

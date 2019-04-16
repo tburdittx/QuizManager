@@ -76,7 +76,9 @@
             <input type="submit" value="Get Answer" asp-action="GetScore" asp-route-id="@item.Id" formmethod="post" class="btn btn-default" />
         </div>*@
 
-                                    @Html.ActionLink("Edit", "GetScore", new {  id=item.Id, AnswerInput=Model.AnswerInput }) |
+                                    @*@Html.ActionLink("Edit", "GetScore", new { id = item.Id, AnswerInput = Model.AnswerInput }) |*@
+
+                                    <li>@Html.ActionLink("Bubbles", "GetScore", "Home", new {model=Model}, new { })</li>
 
                                 </td>
                                 <td>
