@@ -9,67 +9,89 @@
 <h4>QuestionsViewModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-lg-12">
         <form asp-action="Questions">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Question" class="control-label"></label>
-                <input asp-for="Question" class="form-control" />
-                <span asp-validation-for="Question" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <input asp-for="CategoryId" class="form-control" />
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionA" class="control-label"></label>
-                <input asp-for="OptionA" class="form-control" />
-                <span asp-validation-for="OptionA" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionB" class="control-label"></label>
-                <input asp-for="OptionB" class="form-control" />
-                <span asp-validation-for="OptionB" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionC" class="control-label"></label>
-                <input asp-for="OptionC" class="form-control" />
-                <span asp-validation-for="OptionC" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OptionD" class="control-label"></label>
-                <input asp-for="OptionD" class="form-control" />
-                <span asp-validation-for="OptionD" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Answer" class="control-label"></label>
-                <input asp-for="Answer" class="form-control" />
-                <span asp-validation-for="Answer" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AnswerInput" class="control-label"></label>
-                <input asp-for="AnswerInput" class="form-control" />
-                <span asp-validation-for="AnswerInput" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Explanation" class="control-label"></label>
-                <input asp-for="Explanation" class="form-control" />
-                <span asp-validation-for="Explanation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Get Your Results" class="btn btn-default" />
-            </div>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Question)
+
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OptionA)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OptionB)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OptionC)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.OptionD)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.AnswerInput)
+                        </th>
+
+                        <th>
+
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <div class="form-group">
+                        @foreach (var item in Model.ListOfQuestions)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Question)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionB)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionC)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OptionD)
+
+                                </td>
+                                <td>
+                                    <input asp-for="AnswerInput" class="form-control" />
+                                    <span asp-validation-for="AnswerInput" class="text-danger"></span>
+
+
+                                </td>
+
+                                <td>
+                                    <div class="form-group">
+                                        <input type="submit" value="Get Answer" asp-action="GetScore" asp-route-id="@item.Id" class="btn btn-default" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="GetScore" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+
+                         
+                        }
+
+                    </div>
+                </tbody>
+            </table>
+
         </form>
     </div>
 </div>

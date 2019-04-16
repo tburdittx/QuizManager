@@ -36,6 +36,8 @@ namespace QuizManager.Entities
         [DataMember]
         [XmlElement]
         public string Explanation { get; set; }
+
+        public string AnswerInput { get; set; }
     }
 }
 

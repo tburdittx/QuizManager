@@ -36,6 +36,6 @@ namespace QuizManager.WebApp.Models
 
         public int Total { get; set; }
 
-        public List<Questions> ListOfQuestions { get; set; }
+        public IEnumerable<Questions> ListOfQuestions { get; set; }
     }
 }

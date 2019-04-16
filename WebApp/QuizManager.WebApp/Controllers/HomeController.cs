@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using QuizManager.WebApp.Models;
 using QuizManager.Entities;
+using Newtonsoft.Json.Linq;
 
 namespace QuizManager.WebApp.Controllers
 {
@@ -14,7 +15,7 @@ namespace QuizManager.WebApp.Controllers
     {
         public IActionResult Index()
         {
-            this.Categories();
+           // this.Categories();
             return View();
         }
 
@@ -42,12 +43,12 @@ namespace QuizManager.WebApp.Controllers
             return this.View(categoryOptions);
         }
 
-        public IActionResult GetAllQuestionsByCategoryId()
+        public IActionResult GetAllQuestionsByCategoryId(CategoryViewModel incomingModel)
         {
             // var result = GetAllQuestions();
             IEnumerable<Questions> questions;
-            int id = 1;
-            string readAllQuestionsUrl = $"questions/ReadQuestionByCategoryId/{id}";
+           // int id = 1;
+            string readAllQuestionsUrl = $"questions/ReadQuestionByCategoryId/{incomingModel.Id}";
             var result = this.httpClient(readAllQuestionsUrl);
 
             //If success received   
@@ -69,13 +70,15 @@ namespace QuizManager.WebApp.Controllers
 
             model.ListOfQuestions = new List<Questions>();
 
-            foreach (var item in questions)
-            {
-                model.ListOfQuestions.Add(item);
-            }
+            model.ListOfQuestions = questions;
 
 
             return this.View("Questions", model);
+        }
+
+        public IActionResult GetScore(QuestionsViewModel model)
+        {
+            return this.View();
         }
 
         public IActionResult Error()
