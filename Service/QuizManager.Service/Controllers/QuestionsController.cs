@@ -11,10 +11,13 @@ namespace QuizManager.Service.Controllers
     public class QuestionsController : Controller
     {
         public IQuestionsQueryRepository QuestionsQueryRepository { get; }
+        public IQuestionsCommandRepository QuestionsCommandRepository { get; }
 
-        public QuestionsController(IQuestionsQueryRepository questionsQueryRepository)
+        public QuestionsController(IQuestionsQueryRepository questionsQueryRepository,
+            IQuestionsCommandRepository questionsCommandRepository)
         {
             QuestionsQueryRepository = questionsQueryRepository;
+            QuestionsCommandRepository = questionsCommandRepository;
         }
 
         [HttpGet("ReadAllQuestions")]
@@ -37,6 +40,12 @@ namespace QuizManager.Service.Controllers
         {
             var result = this.QuestionsQueryRepository.ReadQuestionsByCategoryId(id);
             return result;
+        }
+
+        [HttpPost("CreateQuestion")]
+        public void CreateQuestion([FromBody] Questions entity)
+        {
+              this.QuestionsCommandRepository.Create(entity);
         }
     }
 }

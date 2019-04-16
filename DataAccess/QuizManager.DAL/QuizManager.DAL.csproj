@@ -66,9 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoryCommandRepository.cs" />
     <Compile Include="CategoryQueryRepository.cs" />
+    <Compile Include="CommandRepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryRepositoryBase.cs" />
+    <Compile Include="QuestionsCommandRepository.cs" />
     <Compile Include="QuestionsQueryRepository.cs" />
   </ItemGroup>
   <ItemGroup>

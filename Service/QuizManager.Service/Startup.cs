@@ -22,7 +22,9 @@ namespace QuizManager.Service
             services.AddMvc();
 
             services.AddTransient<IQuestionsQueryRepository, QuestionsQueryRepository>();
+            services.AddTransient<IQuestionsCommandRepository, QuestionsCommandRepository>();
             services.AddTransient<ICategoryQueryRepository, CategoryQueryRepository>();
+            services.AddTransient<ICategoryCommandRepository, CategoryCommandRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

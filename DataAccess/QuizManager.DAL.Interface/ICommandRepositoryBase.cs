@@ -8,8 +8,8 @@ namespace QuizManager.DAL.Interface
 {
     public interface ICommandRepositoryBase<T> where T:new()
     {
-        Task<long> Create(T entity);
-        Task<long> Delete(long id);
-        Task<long> Update(T entity);
+        void Create(T entity);
+        void Delete(long id);
+        void Update(T entity);
     }
 }

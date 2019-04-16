@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using QuizManager.WebApp.Models;
 using QuizManager.Entities;
-using Newtonsoft.Json.Linq;
+using QuizManager.WebApp.Models;
 
 namespace QuizManager.WebApp.Controllers
 {
@@ -15,7 +13,7 @@ namespace QuizManager.WebApp.Controllers
     {
         public IActionResult Index()
         {
-           // this.Categories();
+            // this.Categories();
             return View();
         }
 
@@ -24,7 +22,7 @@ namespace QuizManager.WebApp.Controllers
             IEnumerable<CategoryViewModel> categoryOptions;
 
             string getCategories = "category/readallcategories";
-            var result = this.httpClient(getCategories);
+            var result = httpClient(getCategories);
 
             if (result.IsSuccessStatusCode)
             {
@@ -40,16 +38,16 @@ namespace QuizManager.WebApp.Controllers
                 ModelState.AddModelError(string.Empty, "Server error try after some time.");
             }
 
-            return this.View(categoryOptions);
+            return View(categoryOptions);
         }
 
         public IActionResult GetAllQuestionsByCategoryId(int id)
         {
             // var result = GetAllQuestions();
             IEnumerable<QuestionsViewModel> questions;
-           // int id = 1;
+            // int id = 1;
             string readAllQuestionsUrl = $"questions/ReadQuestionByCategoryId/{id}";
-            var result = this.httpClient(readAllQuestionsUrl);
+            var result = httpClient(readAllQuestionsUrl);
 
             //If success received   
             if (result.IsSuccessStatusCode)
@@ -65,16 +63,7 @@ namespace QuizManager.WebApp.Controllers
                 questions = Enumerable.Empty<QuestionsViewModel>();
                 ModelState.AddModelError(string.Empty, "Server error try after some time.");
             }
-            
-            //IEnumerable<QuestionsViewModel> model;
-
-            //model.ListOfQuestions = new List<Questions>();
-
-            //model.ListOfQuestions = questions;
-            
-
-
-            return this.View("Questions2", questions);
+            return View("Questions2", questions);
         }
 
         [HttpPost]
@@ -83,7 +72,7 @@ namespace QuizManager.WebApp.Controllers
             Questions questions = new Questions();
             string getQuestionsById = $"questions/readquestionbyid/{models.Id}";
 
-            var result = this.httpClient(getQuestionsById);
+            var result = httpClient(getQuestionsById);
 
             //If success received   
             if (result.IsSuccessStatusCode)
@@ -98,15 +87,11 @@ namespace QuizManager.WebApp.Controllers
                 //Error response received   
                 ModelState.AddModelError(string.Empty, "Server error try after some time.");
             }
-
-            //questions is coming back with the whole question from the database. 
-
-
-
+        
             QuestionsViewModel questionResult = new QuestionsViewModel
             {
-                Id=models.Id,
-                CategoryId=questions.CategoryId,
+                Id = models.Id,
+                CategoryId = questions.CategoryId,
                 Question = questions.Question,
                 OptionA = questions.OptionA,
                 OptionB = questions.OptionB,
@@ -114,18 +99,18 @@ namespace QuizManager.WebApp.Controllers
                 OptionD = questions.OptionD,
                 Answer = questions.Answer,
                 Explanation = questions.Explanation,
-                AnswerInput=models.AnswerInput
+                AnswerInput = models.AnswerInput
 
             };
-  if (models.AnswerInput==questions.Answer)
+            if (models.AnswerInput == questions.Answer)
             {
                 questionResult.Correct = "You got the right answer!";
             }
             else
             {
-questionResult.Correct = "You got the wrong answer!";
+                questionResult.Correct = "You got the wrong answer!";
             }
-            return this.View("GetScore", questionResult);
+            return View("GetScore", questionResult);
 
         }
 
@@ -139,14 +124,22 @@ questionResult.Correct = "You got the wrong answer!";
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:18811/api/");
-  
+
                 var responseTask = client.GetAsync(url);
                 responseTask.Wait();
-                
+
                 HttpResponseMessage result;
                 return result = responseTask.Result;
             }
         }
+        public IActionResult CreateQuestion()
+        {
+            return this.View();
+        }
 
+        public IActionResult CreateQuestion(QuestionsViewModel incomingModel)
+        {
+
+        }
     }
 }
