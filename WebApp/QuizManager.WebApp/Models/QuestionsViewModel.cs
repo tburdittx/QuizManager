@@ -13,7 +13,7 @@ namespace QuizManager.WebApp.Models
         public int Id { get; set; }
         public string Question { get; set; }
 
-        public int CategoryId { get; set; }
+        public Category CategoryEntity { get; set; }
 
         [DisplayName("Option A")]
         public string OptionA { get; set; }

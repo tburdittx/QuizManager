@@ -73,12 +73,37 @@ namespace QuizManager.WebApp.Controllers
             model.ListOfQuestions = questions;
 
 
-            return this.View("Questions", model);
+            return this.View("Questions2", model);
         }
 
         public IActionResult GetScore(QuestionsViewModel model)
         {
+            Questions questions = new Questions();
+            string getQuestionsById = $"questions/readquestionbyid/{model.Id}";
+
+            var result = this.httpClient(getQuestionsById);
+
+            //If success received   
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<Questions>();
+                readTask.Wait();
+
+                questions = readTask.Result;
+            }
+            else
+            {
+                //Error response received   
+               // questions = Enumerable.Empty<Questions>();
+                ModelState.AddModelError(string.Empty, "Server error try after some time.");
+            }
+           
+            //questions is coming back with the whole question from the database. 
+
+
+
             return this.View();
+
         }
 
         public IActionResult Error()
