@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace QuizManager.WebApp.ClientHelper
 {
-    public class QuetionsQueryClientHelper:BaseClientHelper
+    public class QuestionsQueryClientHelper:BaseClientHelper
     {
        
         public IEnumerable<QuestionsViewModel> GetAllQuestions(int id)
@@ -33,6 +33,29 @@ namespace QuizManager.WebApp.ClientHelper
                 //Error response received   
                 questions = Enumerable.Empty<QuestionsViewModel>();
               // ModelState.AddModelError(string.Empty, "Server error try after some time.");
+            }
+            return questions;
+        }
+
+        public Questions GetQuestionById(int id)
+        {
+            Questions questions = new Questions();
+            string getQuestionsById = $"questions/readquestionbyid/{id}";
+
+            var result = GethttpClient(getQuestionsById);
+
+            //If success received   
+            if (result.IsSuccessStatusCode)
+            {
+                var readTask = result.Content.ReadAsAsync<Questions>();
+                readTask.Wait();
+
+                questions = readTask.Result;
+            }
+            else
+            {
+                //Error response received   
+                //ModelState.AddModelError(string.Empty, "Server error try after some time.");
             }
             return questions;
         }
