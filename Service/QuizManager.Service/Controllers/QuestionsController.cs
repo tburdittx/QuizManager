@@ -47,5 +47,17 @@ namespace QuizManager.Service.Controllers
         {
               this.QuestionsCommandRepository.Create(entity);
         }
+
+        [HttpPost("EditQuestion/{id}")]
+        public void EditQuestion([FromBody] Questions entity)
+        {
+            this.QuestionsCommandRepository.Update(entity);
+        }
+
+        [HttpPost("DeleteQuestion/{id}")]
+        public void DeleteQuestion(int id)
+        {
+            this.QuestionsCommandRepository.Delete(id);
+        }
     }
 }

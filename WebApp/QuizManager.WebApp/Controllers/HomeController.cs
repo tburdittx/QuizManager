@@ -83,11 +83,64 @@ namespace QuizManager.WebApp.Controllers
         {
             Questions entity = new Questions
             {
-
+                 Question=incomingModel.Question,
+                 CategoryId=incomingModel.CategoryId,
+                 OptionA=incomingModel.OptionA,
+                 OptionB=incomingModel.OptionB,
+                 OptionC=incomingModel.OptionC,
+                 OptionD=incomingModel.OptionD,
+                 Answer=incomingModel.Answer,
+                 Explanation=incomingModel.Explanation
             };
 
             HttpResponseMessage response = BaseClientHelper.WebApiClient.PostAsJsonAsync("questions/CreateQuestion", entity).Result;
-            return this.View();
+            return this.View("Success");
+        }
+
+        public IActionResult GetListOfQuestions (int id)
+        {
+            var questions = questionsQueryClientHelper.GetAllQuestions(id);
+            return this.View(questions);
+        }
+
+        public IActionResult EditQuestion(int id)
+        {
+            var question = this.questionsQueryClientHelper.GetQuestionById(id);
+
+            QuestionsViewModel model = new QuestionsViewModel
+            {
+                 Id=question.Id,
+                 Question=question.Question,
+                 OptionA=question.OptionA,
+                 OptionB=question.OptionB,
+                 OptionC=question.OptionC,
+                 OptionD=question.OptionD,
+                 Answer=question.Answer,
+                 Explanation=question.Explanation
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditQuestion(QuestionsViewModel incomingModel)
+        {
+            Questions entity = new Questions
+            {
+                Id=incomingModel.Id,
+                Question = incomingModel.Question,
+                CategoryId = incomingModel.CategoryId,
+                OptionA = incomingModel.OptionA,
+                OptionB = incomingModel.OptionB,
+                OptionC = incomingModel.OptionC,
+                OptionD = incomingModel.OptionD,
+                Answer = incomingModel.Answer,
+                Explanation = incomingModel.Explanation
+            };
+
+            HttpResponseMessage response = BaseClientHelper.WebApiClient.PostAsJsonAsync($"questions/editQuestion/{incomingModel.Id}", entity).Result;
+
+            return this.View("Success");
         }
     }
 }

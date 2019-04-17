@@ -55,6 +55,7 @@ namespace QuizManager.DAL
                 SqlCommand cmd = new SqlCommand(UspQuestionsUpdate, con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                cmd.Parameters.AddWithValue("@id", entity.Id);
                 cmd.Parameters.AddWithValue("@categoryId", entity.CategoryId);
                 cmd.Parameters.AddWithValue("@question", entity.Question);
                 cmd.Parameters.AddWithValue("@optionA", entity.OptionA);

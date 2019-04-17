@@ -37,7 +37,7 @@ namespace QuizManager.WebApp.ClientHelper
             return questions;
         }
 
-        public Questions GetQuestionById(int id)
+        public Questions GetQuestionById(long id)
         {
             Questions questions = new Questions();
             string getQuestionsById = $"questions/readquestionbyid/{id}";

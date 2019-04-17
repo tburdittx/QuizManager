@@ -10,7 +10,7 @@ namespace QuizManager.WebApp.Models
 {
     public class QuestionsViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Question { get; set; }
 
         public int CategoryId { get; set; }

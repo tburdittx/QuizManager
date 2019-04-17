@@ -11,10 +11,13 @@ namespace QuizManager.Service.Controllers
     public class CategoryController : Controller
     {
         public ICategoryQueryRepository CategoryQueryRepository { get; }
+        public ICategoryCommandRepository CategoryCommandRepository { get; }
 
-        public CategoryController(ICategoryQueryRepository categoryQueryRepository)
+        public CategoryController(ICategoryQueryRepository categoryQueryRepository,
+            ICategoryCommandRepository categoryCommandRepository)
         {
             CategoryQueryRepository = categoryQueryRepository;
+            CategoryCommandRepository = categoryCommandRepository;
         }
 
         [HttpGet("ReadAllCategories")]
@@ -24,5 +27,24 @@ namespace QuizManager.Service.Controllers
             var result = CategoryQueryRepository.ReadAllAsync();
             return result;
         }
+
+        [HttpPost("CreateCategory")]
+        public void CreateCategory(Category entity)
+        {
+            CategoryCommandRepository.Create(entity);
+        }
+
+        [HttpPost("EditCategory/{id}")]
+        public void EditCategory(Category entity)
+        {
+            CategoryCommandRepository.Update(entity);
+        }
+
+        [HttpPost("DeleteCategory/{id}")]
+        public void DeleteCategory(int id)
+        {
+            CategoryCommandRepository.Delete(id);
+        }
+
     }
 }
