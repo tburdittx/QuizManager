@@ -9,9 +9,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace QuizManager.WebApp.ClientHelper
 {
-    public class QuestionsQueryClientHelper:BaseClientHelper
+    public class QuestionsQueryClientHelper
     {
-       
+        public HttpResponseMessage GethttpClient(string url)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:18811/api/");
+
+                var responseTask = client.GetAsync(url);
+                responseTask.Wait();
+
+                HttpResponseMessage result;
+                return result = responseTask.Result;
+            }
+        }
         public IEnumerable<QuestionsViewModel> GetAllQuestions(int id)
         {
             // var result = GetAllQuestions();

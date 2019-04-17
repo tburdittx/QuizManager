@@ -22,9 +22,15 @@ namespace QuizManager.Service.Controllers
 
         [HttpGet("ReadAllCategories")]
         public Task<IEnumerable<Category>> ReadAllQuestions()
-
         {
             var result = CategoryQueryRepository.ReadAllAsync();
+            return result;
+        }
+
+        [HttpGet("ReadCategoryById/{id}")]
+        public Task<Category> ReadQuestionsById(int id)
+        {
+            var result = this.CategoryQueryRepository.Read(id);
             return result;
         }
 

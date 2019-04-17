@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,19 +17,57 @@ namespace QuizManager.DAL
         {
         }
 
+        private const string UspCategoriesCreate = "[dbo].[uspCategoriesCreate]";
+        private const string UspCategoriesDelete = "[dbo].[uspCategoriesDelete]";
+        private const string UspCategoriesUpdate = "[dbo].[uspCategoriesUpdate]";
+
         public void Create(Category entity)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(this.DbConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(UspCategoriesCreate, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@name", entity.Name);
+                cmd.Parameters.AddWithValue("@description", entity.Description);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(this.DbConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(UspCategoriesUpdate, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         public void Update(Category entity)
         {
-            throw new NotImplementedException();
+
+            using (SqlConnection con = new SqlConnection(this.DbConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(UspCategoriesUpdate, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", entity.Id);
+                cmd.Parameters.AddWithValue("@name", entity.Name);
+                cmd.Parameters.AddWithValue("@description", entity.Description);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
         }
     }
 }

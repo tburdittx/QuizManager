@@ -13,9 +13,7 @@ namespace QuizManager.WebApp.Controllers
     public class HomeController : Controller
     {
         QuestionsQueryClientHelper questionsQueryClientHelper = new QuestionsQueryClientHelper();
-        QuestionsCommandClientHelper questionsCommandClientHelper = new QuestionsCommandClientHelper();
         CategoryQueryClientHelper categoryQueryClientHelper = new CategoryQueryClientHelper();
-        CategoryCommandClientHelper categoryCommandClientHelper = new CategoryCommandClientHelper();
 
         public IActionResult Index()
         {
@@ -33,7 +31,6 @@ namespace QuizManager.WebApp.Controllers
         public IActionResult GetAllQuestionsByCategoryId(int id)
         {
             var questions = questionsQueryClientHelper.GetAllQuestions(id);
-
             return View("Questions2", questions);
         }
 
@@ -93,7 +90,7 @@ namespace QuizManager.WebApp.Controllers
                  Explanation=incomingModel.Explanation
             };
 
-            HttpResponseMessage response = BaseClientHelper.WebApiClient.PostAsJsonAsync("questions/CreateQuestion", entity).Result;
+            HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync("http://localhost:18811/api/questions/CreateQuestion", entity).Result;
             return this.View("Success");
         }
 
@@ -107,9 +104,13 @@ namespace QuizManager.WebApp.Controllers
         {
             var question = this.questionsQueryClientHelper.GetQuestionById(id);
 
+            var category = this.categoryQueryClientHelper.GetCategoryById(question.CategoryId);
+
             QuestionsViewModel model = new QuestionsViewModel
             {
                  Id=question.Id,
+                 CategoryId=question.CategoryId,
+                 CategoryName=category.Name,
                  Question=question.Question,
                  OptionA=question.OptionA,
                  OptionB=question.OptionB,
@@ -138,7 +139,7 @@ namespace QuizManager.WebApp.Controllers
                 Explanation = incomingModel.Explanation
             };
 
-            HttpResponseMessage response = BaseClientHelper.WebApiClient.PostAsJsonAsync($"questions/editQuestion/{incomingModel.Id}", entity).Result;
+            HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/questions/editQuestion/{incomingModel.Id}", entity).Result;
 
             return this.View("Success");
         }

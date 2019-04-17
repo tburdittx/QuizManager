@@ -45,7 +45,17 @@ namespace QuizManager.DAL
 
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new SqlConnection(this.DbConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(UspQuestionsDelete, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
         }
 
         public void Update(Questions entity)

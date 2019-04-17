@@ -15,6 +15,9 @@ namespace QuizManager.WebApp.Models
 
         public int CategoryId { get; set; }
 
+        [DisplayName("Category Name")]
+        public string CategoryName { get; set; }
+
         [DisplayName("Option A")]
         public string OptionA { get; set; }
 
