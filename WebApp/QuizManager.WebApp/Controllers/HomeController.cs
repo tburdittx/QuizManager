@@ -23,7 +23,6 @@ namespace QuizManager.WebApp.Controllers
 
         public IActionResult Categories()
         {
-
             var categoryOptions = this.categoryQueryClientHelper.GetCategories();
             return View(categoryOptions);
         }
@@ -159,11 +158,38 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        public void DeleteCategory(Category model)
+        public IActionResult DeleteCategory(Category model)
         {
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/category/DeleteQuestionCategoryById/{model.Id}", model.Id).Result;
 
-            this.Categories();
+            return this.View("Success");
+        }
+
+        public IActionResult DeleteQuestion(int id)
+        {
+            var question = this.questionsQueryClientHelper.GetQuestionById(id);
+
+            QuestionsViewModel model = new QuestionsViewModel
+            {
+                Id = question.Id,
+                Question = question.Question,
+                CategoryId = question.CategoryId,
+                OptionA = question.OptionA,
+                OptionB = question.OptionB,
+                OptionC = question.OptionC,
+                OptionD = question.OptionD,
+                Answer = question.Answer,
+                Explanation = question.Explanation
+            };
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteQuesiton(Questions incomingModel)
+        {
+            HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/questions/DeleteQuestion/{incomingModel.Id}", incomingModel.Id).Result;
+
+            return this.View("Success");
         }
     }
 }
