@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Edit", "EditCategory", new { id = item.Id }) |
                 @Html.ActionLink("Go to Quiz", "GetAllQuestionsByCategoryId", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "DeleteCategory", new { id = item.Id }) |
                 @Html.ActionLink("Alter Questions", "GetListOfQuestions", new { id = item.Id })

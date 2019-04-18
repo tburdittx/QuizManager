@@ -210,5 +210,34 @@ namespace QuizManager.WebApp.Controllers
 
             return this.View("Success");
         }
+
+        public IActionResult EditCategory(int id)
+        {
+            var category = categoryQueryClientHelper.GetCategoryById(id);
+
+            CategoryViewModel model = new CategoryViewModel
+            {
+                Id = category.Id,
+                Name = category.Name,
+                Description = category.Description
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public IActionResult EditCategory(CategoryViewModel incomingModel)
+        {
+            Category category = new Category
+            {
+                Id = incomingModel.Id,
+                Name = incomingModel.Name,
+                Description = incomingModel.Description
+            };
+
+            HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync("http://localhost:18811/api/category/EditCategory/{incomingModel.id}", category).Result;
+
+            return this.View("Success");
+        }
     }
 }
