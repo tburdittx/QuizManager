@@ -21,7 +21,7 @@ SELECT [Id]
 	  ,[CreatedDate] 
 	  ,[ModifiedBy] 
 	  ,[ModifiedDate] 
-  FROM [QuizManager].[dbo].[Questions]
+  FROM [dbo].[Questions]
   where Id=@id
 
 END
