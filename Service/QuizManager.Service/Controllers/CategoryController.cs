@@ -35,13 +35,13 @@ namespace QuizManager.Service.Controllers
         }
 
         [HttpPost("CreateCategory")]
-        public void CreateCategory(Category entity)
+        public void CreateCategory([FromBody] Category entity)
         {
             CategoryCommandRepository.Create(entity);
         }
 
         [HttpPost("EditCategory/{id}")]
-        public void EditCategory(Category entity)
+        public void EditCategory([FromBody] Category entity)
         {
             CategoryCommandRepository.Update(entity);
         }

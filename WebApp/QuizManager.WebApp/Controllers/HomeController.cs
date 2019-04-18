@@ -191,5 +191,24 @@ namespace QuizManager.WebApp.Controllers
 
             return this.View("Success");
         }
+
+        public IActionResult CreateCategory()
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateCategory(CategoryViewModel incomingModel)
+        {
+            Category category = new Category
+            {
+                Name = incomingModel.Name,
+                Description = incomingModel.Description
+            };
+
+            HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/category/CreateCategory", category).Result;
+
+            return this.View("Success");
+        }
     }
 }
