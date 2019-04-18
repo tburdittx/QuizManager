@@ -15,21 +15,18 @@ namespace QuizManager.WebApp.Controllers
         private QuestionsQueryClientHelper questionsQueryClientHelper = new QuestionsQueryClientHelper();
         private CategoryQueryClientHelper categoryQueryClientHelper = new CategoryQueryClientHelper();
 
-        public IActionResult Index()
-        {
-            // this.Categories();
-            return View();
-        }
+        //public IActionResult Index()
+        //{
+        //    // this.Categories();
+        //    return View();
+        //}
 
-        public IActionResult Categories()
+        public IActionResult Index()
         {
             var categoryOptions = categoryQueryClientHelper.GetCategories();
             return View(categoryOptions);
         }
-
-        [Authorize(Roles = "View")]
-        [Authorize(Roles = "Restricted")]
-        [Authorize(Roles = "Edit")]
+        
         public IActionResult GetAllQuestionsByCategoryId(int id)
         {
             var questions = questionsQueryClientHelper.GetAllQuestions(id);
