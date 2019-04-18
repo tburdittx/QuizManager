@@ -20,6 +20,8 @@ namespace QuizManager.DAL
         private const string UspCategoriesCreate = "[dbo].[uspCategoriesCreate]";
         private const string UspCategoriesDelete = "[dbo].[uspCategoriesDelete]";
         private const string UspCategoriesUpdate = "[dbo].[uspCategoriesUpdate]";
+        private const string UspDeleteQuestionsByCategoryById = "[dbo].[uspDeleteQuestionsByCategoryById]";
+
 
         public void Create(Category entity)
         {
@@ -41,7 +43,7 @@ namespace QuizManager.DAL
         {
             using (SqlConnection con = new SqlConnection(this.DbConnectionString))
             {
-                SqlCommand cmd = new SqlCommand(UspCategoriesUpdate, con);
+                SqlCommand cmd = new SqlCommand(UspCategoriesDelete, con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@id", id);
@@ -63,6 +65,21 @@ namespace QuizManager.DAL
                 cmd.Parameters.AddWithValue("@id", entity.Id);
                 cmd.Parameters.AddWithValue("@name", entity.Name);
                 cmd.Parameters.AddWithValue("@description", entity.Description);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+            }
+        }
+
+        public void DeleteQuestionsByCategoryById(long id)
+        {
+            using (SqlConnection con = new SqlConnection(this.DbConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(UspDeleteQuestionsByCategoryById, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
 
                 con.Open();
                 cmd.ExecuteNonQuery();

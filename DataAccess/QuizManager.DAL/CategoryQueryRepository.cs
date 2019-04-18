@@ -12,7 +12,7 @@ namespace QuizManager.DAL
 {
     public class CategoryQueryRepository : QueryRepositoryBase, ICategoryQueryRepository
     {
-        private const string uspCategoryRead = "[dbo].[uspCategoryRead]";
+        private const string uspCategoryRead = "[dbo].[uspCategoriesReadById]";
         private const string uspCategoryReadAll = "[dbo].[uspCategoriesReadAll]";
         public CategoryQueryRepository(IConfiguration configuration) : base(configuration)
         {

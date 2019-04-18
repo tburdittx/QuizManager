@@ -52,5 +52,11 @@ namespace QuizManager.Service.Controllers
             CategoryCommandRepository.Delete(id);
         }
 
+        [HttpPost("DeleteQuestionCategoryById/{id}")]
+        public void DeleteQuestionsByCategoryById(int id)
+        {
+            CategoryCommandRepository.DeleteQuestionsByCategoryById(id);
+        }
+
     }
 }

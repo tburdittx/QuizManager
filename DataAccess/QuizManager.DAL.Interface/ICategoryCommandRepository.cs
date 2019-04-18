@@ -9,5 +9,6 @@ namespace QuizManager.DAL.Interface
 { 
     public interface ICategoryCommandRepository:ICommandRepositoryBase<Category>
     {
+        void DeleteQuestionsByCategoryById(long id);
     }
 }

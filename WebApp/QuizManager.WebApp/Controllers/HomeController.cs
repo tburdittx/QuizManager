@@ -143,5 +143,27 @@ namespace QuizManager.WebApp.Controllers
 
             return this.View("Success");
         }
+
+        public IActionResult DeleteCategory(int id)
+        {
+            var category = this.categoryQueryClientHelper.GetCategoryById(id);
+
+            CategoryViewModel model = new CategoryViewModel
+            {
+                 Id=category.Id,
+                 Name=category.Name,
+                 Description=category.Description
+            };
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public void DeleteCategory(Category model)
+        {
+            HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/category/DeleteQuestionCategoryById/{model.Id}", model.Id).Result;
+
+            this.Categories();
+        }
     }
 }
