@@ -23,6 +23,10 @@ SELECT [Id]
       ,[OptionD]
       ,[Answer]
       ,[Explanation]
+	  	  ,[CreatedBy] 
+	  ,[CreatedDate] 
+	  ,[ModifiedBy] 
+	  ,[ModifiedDate] 
   FROM [dbo].[Questions]
   where CategoryId=@categoryId
 END

@@ -12,7 +12,11 @@ CREATE PROCEDURE uspQuestionsCreate
 	@optionC	nvarchar(526),
 	@optionD	nvarchar(526),
 	@answer		nvarchar(526),
-	@explanation nvarchar(526)
+	@explanation nvarchar(526),
+	@createdBy nvarchar(526),
+@createdDate datetime2(7),
+@modifiedBy nvarchar(526),
+@modifiedDate datetime2(7)
 	)
 
 AS
@@ -26,7 +30,11 @@ BEGIN
            ,[OptionC]
            ,[OptionD]
            ,[Answer]
-           ,[Explanation])
+           ,[Explanation]
+		   ,[CreatedBy]
+		   ,[CreatedDate]
+		   ,[ModifiedBy]
+		   ,[ModifiedDate])
      VALUES
 	 (@categoryId,
            @question ,
@@ -35,7 +43,10 @@ BEGIN
 	@optionC	,
 	@optionD	,
 	@answer		,
-	@explanation
+	@explanation,
+	 @createdBy,
+		   @createdDate,
+		   @modifiedBy,
+		   @modifiedDate
 	)
 END
-GO

@@ -5,18 +5,31 @@
 -- =============================================
 CREATE PROCEDURE uspCategoriesCreate
 
+
 @name	nvarchar(526),
-@description nvarchar(526)
+@description nvarchar(526),
+@createdBy nvarchar(526),
+@createdDate datetime2(7),
+@modifiedBy nvarchar(526),
+@modifiedDate datetime2(7)
 
 AS
 BEGIN
 INSERT INTO [dbo].[Categories]
            ([Name],
-		   [Description])
+		   [Description],
+		   [CreatedBy],
+		   [CreatedDate],
+		   [ModifiedBy],
+		   [ModifiedDate])
      VALUES
            (
 		   @name,
-		   @description
+		   @description,
+		   @createdBy,
+		   @createdDate,
+		   @modifiedBy,
+		   @modifiedDate
 		   )
 
 END

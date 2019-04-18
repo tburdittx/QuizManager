@@ -13,6 +13,10 @@ BEGIN
 SELECT [Id]
       ,[Name]
 	  ,[Description]
+	  	  ,[CreatedBy] 
+	  ,[CreatedDate] 
+	  ,[ModifiedBy] 
+	  ,[ModifiedDate] 
   FROM [dbo].[Categories]
   where Id=@id
 END

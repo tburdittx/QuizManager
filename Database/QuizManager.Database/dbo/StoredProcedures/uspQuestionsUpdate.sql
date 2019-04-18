@@ -14,7 +14,9 @@ CREATE PROCEDURE uspQuestionsUpdate
 	@optionC	nvarchar(526),
 	@optionD	nvarchar(526),
 	@answer		nvarchar(526),
-	@explanation nvarchar(526)
+	@explanation nvarchar(526),
+	@modifiedBy nvarchar(526),
+@modifiedDate datetime2(7)
 )
 
 	As
@@ -33,6 +35,7 @@ BEGIN
       ,[OptionD] = @optionD
       ,[Answer] = @answer
       ,[Explanation] = @explanation
+	     ,[ModifiedBy]=@modifiedBy,
+   [ModifiedDate]=@modifiedDate
  WHERE Id=@id
  END
-GO

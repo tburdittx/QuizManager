@@ -11,6 +11,10 @@ BEGIN
 	SELECT [Id]
       ,[Name]
 	  ,[Description]
+	  ,[CreatedBy] 
+	  ,[CreatedDate] 
+	  ,[ModifiedBy] 
+	  ,[ModifiedDate] 
   FROM [dbo].[Categories]
   end
 GO

@@ -36,6 +36,10 @@ namespace QuizManager.DAL
                 cmd.Parameters.AddWithValue("@optionD", entity.OptionD);
                 cmd.Parameters.AddWithValue("@answer", entity.Answer);
                 cmd.Parameters.AddWithValue("@explanation", entity.Explanation);
+                cmd.Parameters.AddWithValue("@createdBy", entity.CreatedBy);
+                cmd.Parameters.AddWithValue("@createdDate", entity.CreatedDate);
+                cmd.Parameters.AddWithValue("@modifiedBy", entity.ModifiedBy);
+                cmd.Parameters.AddWithValue("@modifiedDate", entity.ModifiedDate);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -74,6 +78,8 @@ namespace QuizManager.DAL
                 cmd.Parameters.AddWithValue("@optionD", entity.OptionD);
                 cmd.Parameters.AddWithValue("@answer", entity.Answer);
                 cmd.Parameters.AddWithValue("@explanation", entity.Explanation);
+                cmd.Parameters.AddWithValue("@modifiedBy", entity.ModifiedBy);
+                cmd.Parameters.AddWithValue("@modifiedDate", entity.ModifiedDate);
 
                 con.Open();
                 cmd.ExecuteNonQuery();

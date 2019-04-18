@@ -17,6 +17,10 @@ SELECT [Id]
       ,[OptionD]
       ,[Answer]
       ,[Explanation]
+	  	  ,[CreatedBy] 
+	  ,[CreatedDate] 
+	  ,[ModifiedBy] 
+	  ,[ModifiedDate] 
   FROM [QuizManager].[dbo].[Questions]
   where Id=@id
 
