@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Net.Http;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -74,15 +75,21 @@ namespace QuizManager.WebApp.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Edit")]
-        public IActionResult CreateQuestion()
+        public IActionResult CreateQuestion(int categoryId)
         {
-            return View();
+            QuestionsViewModel model = new QuestionsViewModel
+            {
+                CategoryId=categoryId
+            };
+
+            return View(model);
         }
 
         [HttpPost]
         [Authorize(Roles = "Edit")]
         public IActionResult CreateQuestion(QuestionsViewModel incomingModel)
         {
+            var user = this.GetCurrentLoggedInUser();
             Questions entity = new Questions
             {
                 Question = incomingModel.Question,
@@ -92,7 +99,11 @@ namespace QuizManager.WebApp.Controllers
                 OptionC = incomingModel.OptionC,
                 OptionD = incomingModel.OptionD,
                 Answer = incomingModel.Answer,
-                Explanation = incomingModel.Explanation
+                Explanation = incomingModel.Explanation,
+                 CreatedDate=DateTime.Now,
+                 CreatedBy=user,
+                ModifiedDate = DateTime.Now,
+                ModifiedBy = user,
             };
 
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync("http://localhost:18811/api/questions/CreateQuestion", entity).Result;
@@ -103,7 +114,14 @@ namespace QuizManager.WebApp.Controllers
         public IActionResult GetListOfQuestions(int id)
         {
             var questions = questionsQueryClientHelper.GetAllQuestions(id);
-            return View(questions);
+
+            QuestionsViewModel model = new QuestionsViewModel
+            {
+                ListOfQuestions = questions,
+                CategoryId = id
+            };
+
+            return View(model);
         }
 
         [Authorize(Roles = "Edit")]
@@ -134,6 +152,8 @@ namespace QuizManager.WebApp.Controllers
         [Authorize(Roles = "Edit")]
         public IActionResult EditQuestion(QuestionsViewModel incomingModel)
         {
+            var user = this.GetCurrentLoggedInUser();
+
             Questions entity = new Questions
             {
                 Id = incomingModel.Id,
@@ -144,7 +164,9 @@ namespace QuizManager.WebApp.Controllers
                 OptionC = incomingModel.OptionC,
                 OptionD = incomingModel.OptionD,
                 Answer = incomingModel.Answer,
-                Explanation = incomingModel.Explanation
+                Explanation = incomingModel.Explanation,
+                ModifiedDate = DateTime.Now,
+                ModifiedBy = user,
             };
 
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/questions/editQuestion/{incomingModel.Id}", entity).Result;
@@ -215,10 +237,16 @@ namespace QuizManager.WebApp.Controllers
         [Authorize(Roles = "Edit")]
         public IActionResult CreateCategory(CategoryViewModel incomingModel)
         {
+            var user = this.GetCurrentLoggedInUser();
+
             Category category = new Category
             {
                 Name = incomingModel.Name,
-                Description = incomingModel.Description
+                Description = incomingModel.Description,
+                CreatedDate = DateTime.Now,
+                CreatedBy = user,
+                ModifiedDate = DateTime.Now,
+                ModifiedBy = user,
             };
 
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/category/CreateCategory", category).Result;
@@ -245,16 +273,25 @@ namespace QuizManager.WebApp.Controllers
         [Authorize(Roles = "Edit")]
         public IActionResult EditCategory(CategoryViewModel incomingModel)
         {
+            var user = this.GetCurrentLoggedInUser();
+
             Category category = new Category
             {
                 Id = incomingModel.Id,
                 Name = incomingModel.Name,
-                Description = incomingModel.Description
+                Description = incomingModel.Description,
+                ModifiedDate = DateTime.Now,
+                ModifiedBy = user,
             };
 
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync("http://localhost:18811/api/category/EditCategory/{incomingModel.id}", category).Result;
 
             return View("Success");
+        }
+
+        public string GetCurrentLoggedInUser()
+        {
+           return this.User.Identity.Name;
         }
     }
 }
