@@ -70,11 +70,11 @@
     </dl>
     
     <form asp-action="DeleteQuesiton">
-        <input type="submit" value="Delete" class="btn btn-default" id=Id /> |
-        <a asp-action="Index">Back to List</a>
+
 
         <div class="form-group">
-            <input type="submit" value="Get Answer" asp-action="DeleteQuesiton" asp-route-id="@Model.Id" class="btn btn-default" />
+            <input type="submit" value="Delete" asp-action="DeleteQuesiton" asp-route-id="@Model.Id" class="btn btn-default" />
         </div>
+        <a asp-action="Index">Back to List</a>
     </form>
 </div>

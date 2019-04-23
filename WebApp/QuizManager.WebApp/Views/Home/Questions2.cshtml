@@ -13,11 +13,7 @@
     <div class="col-lg-12">
         <form asp-action="GetScore">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="@item.Id" class="control-label"></label>
-                <input asp-for="@item.Id" class="form-control" readonly />
-                <span asp-validation-for="@item.Id" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <label asp-for="@item.Question" class="control-label"></label>
                 <input asp-for="@item.Question" class="form-control" readonly />

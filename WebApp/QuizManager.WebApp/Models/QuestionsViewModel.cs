@@ -32,7 +32,7 @@ namespace QuizManager.WebApp.Models
 
         public string Answer { get; set; }
 
-        [DisplayName("Enter your answer")]
+        [DisplayName("Your answer")]
         [RegularExpression("[A-Da-d ]*", ErrorMessage = "Invalid Answer Input ")]
         public string AnswerInput { get; set; }
         public string Explanation { get; set; }

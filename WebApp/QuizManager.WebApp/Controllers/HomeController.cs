@@ -34,8 +34,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Restricted")]
-        [Authorize(Roles = "Edit")]
+        [Authorize(Roles = "Restricted,Edit")]
         public IActionResult GetScore(QuestionsViewModel models)
         {
             Questions questions = questionsQueryClientHelper.GetQuestionById(models.Id);
