@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuizManager.WebApp", "WebAp
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "QuizManager.Database", "Database\QuizManager.Database\QuizManager.Database.sqlproj", "{A5495072-8C40-4DD4-838A-5FE6AE324C12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizManager.DAL.Tests", "DataAccess\QuizManager.DAL.Tests\QuizManager.DAL.Tests.csproj", "{045810E3-7596-4DEB-BBD9-3F5C8EF8AE99}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A5495072-8C40-4DD4-838A-5FE6AE324C12}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{045810E3-7596-4DEB-BBD9-3F5C8EF8AE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045810E3-7596-4DEB-BBD9-3F5C8EF8AE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045810E3-7596-4DEB-BBD9-3F5C8EF8AE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045810E3-7596-4DEB-BBD9-3F5C8EF8AE99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{3E3A80B4-C268-4BFB-80D1-CDC79406113F} = {E5E4C53E-1F8D-432B-87D3-E5696A83B372}
 		{C9E8C9FB-FC41-41C1-9935-826E068E403B} = {AD4ACD23-A8A7-40B7-A3F6-846826E6325A}
 		{A5495072-8C40-4DD4-838A-5FE6AE324C12} = {ABE4A4CD-E2ED-4C2B-AF80-1D5F20F25C14}
+		{045810E3-7596-4DEB-BBD9-3F5C8EF8AE99} = {FE7374FC-9D44-42A1-A15C-0EBFF223B7E5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2DB13F32-AB8B-44C7-B219-C533E3571A79}
