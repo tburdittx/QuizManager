@@ -34,33 +34,34 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Restricted,Edit")]
+        //[Authorize(Roles = "Restricted,Edit")]
+        
         public IActionResult GetScore(QuestionsViewModel models)
         {
-            Questions questions = questionsQueryClientHelper.GetQuestionById(models.Id);
+           Questions questions = questionsQueryClientHelper.GetQuestionById(models.Id);
 
-            QuestionsViewModel questionResult = new QuestionsViewModel
-            {
-                Id = models.Id,
-                CategoryId = questions.CategoryId,
-                Question = questions.Question,
-                OptionA = questions.OptionA,
-                OptionB = questions.OptionB,
-                OptionC = questions.OptionC,
-                OptionD = questions.OptionD,
-                Answer = questions.Answer,
-                Explanation = questions.Explanation,
-                AnswerInput = models.AnswerInput
-            };
-            if (models.AnswerInput == questions.Answer)
-            {
-                questionResult.Correct = "You got the right answer!";
-            }
-            else
-            {
-                questionResult.Correct = "You got the wrong answer!";
-            }
-            return View("GetScore", questionResult);
+           QuestionsViewModel questionResult = new QuestionsViewModel
+           {
+               Id = models.Id,
+               CategoryId = questions.CategoryId,
+               Question = questions.Question,
+               OptionA = questions.OptionA,
+               OptionB = questions.OptionB,
+               OptionC = questions.OptionC,
+               OptionD = questions.OptionD,
+               Answer = questions.Answer,
+               Explanation = questions.Explanation,
+               AnswerInput = models.AnswerInput
+           };
+           if (models.AnswerInput == questions.Answer)
+           {
+               questionResult.Correct = "You got the right answer!";
+           }
+           else
+           {
+               questionResult.Correct = "You got the wrong answer!";
+           }
+            return View("GetScore");
 
         }
 
@@ -70,7 +71,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Edit")]
+     //   [Authorize(Roles = "Edit")]
         public IActionResult CreateQuestion(int categoryId)
         {
             QuestionsViewModel model = new QuestionsViewModel
@@ -82,7 +83,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Edit")]
+       // [Authorize(Roles = "Edit")]
         public IActionResult CreateQuestion(QuestionsViewModel incomingModel)
         {
             var user = this.GetCurrentLoggedInUser();
@@ -106,7 +107,7 @@ namespace QuizManager.WebApp.Controllers
             return View("Success");
         }
 
-        [Authorize(Roles = "Edit")]
+      // [Authorize(Roles = "Edit")]
         public IActionResult GetListOfQuestions(int id)
         {
             var questions = questionsQueryClientHelper.GetAllQuestions(id);
@@ -120,7 +121,7 @@ namespace QuizManager.WebApp.Controllers
             return View(model);
         }
 
-        [Authorize(Roles = "Edit")]
+      //  [Authorize(Roles = "Edit")]
         public IActionResult EditQuestion(int id)
         {
             var question = questionsQueryClientHelper.GetQuestionById(id);
@@ -145,7 +146,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Edit")]
+      //  [Authorize(Roles = "Edit")]
         public IActionResult EditQuestion(QuestionsViewModel incomingModel)
         {
             var user = this.GetCurrentLoggedInUser();
@@ -170,7 +171,7 @@ namespace QuizManager.WebApp.Controllers
             return View("Success");
         }
 
-        [Authorize(Roles = "Edit")]
+     //   [Authorize(Roles = "Edit")]
         public IActionResult DeleteCategory(int id)
         {
             var category = categoryQueryClientHelper.GetCategoryById(id);
@@ -186,7 +187,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Edit")]
+      //  [Authorize(Roles = "Edit")]
         public IActionResult DeleteCategory(Category model)
         {
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/category/DeleteQuestionCategoryById/{model.Id}", model.Id).Result;
@@ -194,7 +195,7 @@ namespace QuizManager.WebApp.Controllers
             return View("Success");
         }
 
-        [Authorize(Roles = "Edit")]
+      //  [Authorize(Roles = "Edit")]
         public IActionResult DeleteQuestion(int id)
         {
             var question = questionsQueryClientHelper.GetQuestionById(id);
@@ -215,7 +216,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Edit")]
+       // [Authorize(Roles = "Edit")]
         public IActionResult DeleteQuesiton(Questions incomingModel)
         {
             HttpResponseMessage response = CommandClientHelper.WebApiClient.PostAsJsonAsync($"http://localhost:18811/api/questions/DeleteQuestion/{incomingModel.Id}", incomingModel.Id).Result;
@@ -230,7 +231,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Edit")]
+     //   [Authorize(Roles = "Edit")]
         public IActionResult CreateCategory(CategoryViewModel incomingModel)
         {
             var user = this.GetCurrentLoggedInUser();
@@ -250,7 +251,7 @@ namespace QuizManager.WebApp.Controllers
             return View("Success");
         }
 
-        [Authorize(Roles = "Edit")]
+      //  [Authorize(Roles = "Edit")]
         public IActionResult EditCategory(int id)
         {
             var category = categoryQueryClientHelper.GetCategoryById(id);
@@ -266,7 +267,7 @@ namespace QuizManager.WebApp.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Edit")]
+      //  [Authorize(Roles = "Edit")]
         public IActionResult EditCategory(CategoryViewModel incomingModel)
         {
             var user = this.GetCurrentLoggedInUser();

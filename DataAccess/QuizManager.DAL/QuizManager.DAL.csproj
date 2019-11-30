@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicantFeedbackCommandRepository.cs" />
+    <Compile Include="ApplicantFeedbackQueryRepository.cs" />
     <Compile Include="CategoryCommandRepository.cs" />
     <Compile Include="CategoryQueryRepository.cs" />
     <Compile Include="CommandRepositoryBase.cs" />

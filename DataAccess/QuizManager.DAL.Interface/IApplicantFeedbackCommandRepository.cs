@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using QuizManager.Entities;
 
 namespace QuizManager.DAL.Interface
 {
-    public class Class1
+   public interface IApplicantFeedbackCommandRepository:ICommandRepositoryBase<ApplicantFeedback>
     {
     }
 }

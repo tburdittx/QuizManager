@@ -31,6 +31,8 @@ namespace QuizManager.Service
             services.AddTransient<IQuestionsCommandRepository, QuestionsCommandRepository>();
             services.AddTransient<ICategoryQueryRepository, CategoryQueryRepository>();
             services.AddTransient<ICategoryCommandRepository, CategoryCommandRepository>();
+            services.AddTransient<IApplicantFeedbackQueryRepository, ApplicantFeedbackQueryRepository>();
+            services.AddTransient<IApplicantFeedbackCommandRepository, ApplicantFeedbackCommandRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
